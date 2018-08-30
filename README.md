@@ -6,7 +6,7 @@ The script will:
 
 * Query for existing records with the same name
 * Delete them
-* Create a new CNAME record with the specified name and value
+* Create a new record with the specified name and value
 
 ## Usage:
 
@@ -31,6 +31,7 @@ $ docker run -it --rm \
   -e LOGIN=username \
   -e PASSWORD=password \
   -e DOMAIN=example.com \
+  -e TYPE=TXT \
   -e RECORD=_acme-challenge \
   -e VALUE=changeme \
   klausmeyer/inwx-update

@@ -10,6 +10,7 @@ require 'yaml'
 login    = ENV.fetch('LOGIN')
 password = ENV.fetch('PASSWORD')
 domain   = ENV.fetch('DOMAIN')
+type     = ENV.fetch('TYPE')
 record   = ENV.fetch('RECORD')
 value    = ENV.fetch('VALUE')
 logger   = ENV.fetch('VERBOSE', 'false') == 'true' ? Logger.new(STDOUT) : Logger.new('/dev/null')
@@ -30,6 +31,7 @@ logger.info '--- nameserver.info:'
 
 result = domrobot.call('nameserver', 'info', {
   'domain' => domain,
+  'type'   => type,
   'name'   => record
 })
 
@@ -53,7 +55,7 @@ logger.info '--- nameserver.createRecord:'
 
 result = domrobot.call('nameserver', 'createRecord', {
   'domain'  => domain,
-  'type'    => 'CNAME',
+  'type'    => type,
   'name'    => record,
   'content' => value
 })
