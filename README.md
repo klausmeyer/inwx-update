@@ -17,6 +17,7 @@ You'll need to have a clone of this repository and a working ruby installation.
 ```shell
 $ cd ~/Code/github.com/klausmeyer/inwx-update
 $ bundle install
+$ cp .env.example .env
 $ $EDITOR .env # change the configs to your needs
 $ bundle exec ruby script.rb
 ```
