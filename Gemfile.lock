@@ -1,7 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    dotenv (2.5.0)
+    dotenv (2.7.5)
     inwx-rb (0.1.1)
     xmlrpc (0.3.0)
 
@@ -9,7 +9,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  dotenv (~> 2.5.0)
+  dotenv (~> 2.7.5)
   inwx-rb (~> 0.1.1)
   xmlrpc (~> 0.3.0)
 
