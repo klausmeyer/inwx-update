@@ -3,7 +3,7 @@ GEM
   specs:
     dotenv (2.7.6)
     inwx-rb (0.1.1)
-    xmlrpc (0.3.0)
+    xmlrpc (0.3.1)
 
 PLATFORMS
   ruby
