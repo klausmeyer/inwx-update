@@ -11,8 +11,7 @@ WORKDIR /usr/src
 ADD Gemfile /usr/src
 ADD Gemfile.lock /usr/src
 
-RUN gem install bundler && \
-    bundle install --without development test
+RUN gem install bundler && bundle install
 
 RUN bundle install
 
