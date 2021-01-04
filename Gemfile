@@ -1,5 +1,19 @@
 source 'https://rubygems.org'
 
-gem 'dotenv',  '~> 2.7.5'
-gem 'inwx-rb', '~> 0.1.1'
+gem 'inwx-rb', '~> 0.1.1', require: 'inwx/domrobot'
 gem 'xmlrpc',  '~> 0.3.0'
+gem 'rexml',   '~> 3.2.4'
+gem 'webrick', '~> 1.7.0' # required for webrick/cookie
+
+group :development do
+  gem 'dotenv', '~> 2.7.6', require: 'dotenv/load'
+end
+
+group :test do
+  gem 'webmock', '~> 3.11.0'
+end
+
+group :development, :test do
+  gem 'byebug', '~> 11.1.3'
+  gem 'rspec', '~> 3.10.0'
+end
