@@ -3,7 +3,6 @@ source 'https://rubygems.org'
 gem 'inwx-rb', '~> 0.1.1', require: 'inwx/domrobot'
 gem 'xmlrpc',  '~> 0.3.0'
 gem 'rexml',   '~> 3.2.4'
-gem 'webrick', '~> 1.7.0' # required for webrick/cookie
 
 group :development do
   gem 'dotenv', '~> 2.7.6', require: 'dotenv/load'

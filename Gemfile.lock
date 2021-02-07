@@ -43,7 +43,6 @@ DEPENDENCIES
   rexml (~> 3.2.4)
   rspec (~> 3.10.0)
   webmock (~> 3.11.0)
-  webrick (~> 1.7.0)
   xmlrpc (~> 0.3.0)
 
 BUNDLED WITH
