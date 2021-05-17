@@ -1,8 +1,5 @@
 class App
-  Error        = Class.new(RuntimeError)
-  LoginError   = Class.new(Error)
-  CleanupError = Class.new(Error)
-  UpdateError  = Class.new(Error)
+  Error = Class.new(RuntimeError)
 
   def initialize(config)
     self.config = config
@@ -28,49 +25,41 @@ class App
 
     config.logger.info YAML.dump(result)
 
-    raise LoginError if result['code'] != 1000
+    raise Error, 'Failed in nameserver.login call' if result['code'] != 1000
   end
 
   def cleanup
-    config.logger.info '---'
-    config.logger.info '--- nameserver.info:'
-
-    result = domrobot.call('nameserver', 'info', {
+    result = call('info', {
       'domain' => config.domain,
       'type'   => config.type,
       'name'   => config.record
     })
 
-    config.logger.info YAML.dump(result)
-
     Array(result.dig('resData', 'record')).each do |entry|
-      config.logger.info '---'
-      config.logger.info '--- nameserver.deleteRecord:'
-
-      result = domrobot.call('nameserver', 'deleteRecord', {
-        'id' => entry['id']
-      })
-
-      config.logger.info YAML.dump(result)
-
-      raise CleanupError if result['code'] != 1000
+      call('deleteRecord', 'id' => entry['id'])
     end
   end
 
   def update
-    config.logger.info '---'
-    config.logger.info '--- nameserver.createRecord:'
-
-    result = domrobot.call('nameserver', 'createRecord', {
+    call('createRecord', {
       'domain'  => config.domain,
       'type'    => config.type,
       'name'    => config.record,
       'content' => config.value
     })
+  end
+
+  def call(method, params)
+    config.logger.info '---'
+    config.logger.info "--- nameserver.#{method}:"
+
+    result = domrobot.call('nameserver', method, params)
 
     config.logger.info YAML.dump(result)
 
-    raise UpdateError if result['code'] != 1000
+    raise Error, "Failed in nameserver.#{method} call" if result['code'] != 1000
+
+    result
   end
 
   def domrobot

@@ -27,7 +27,7 @@ RSpec.describe App do
       let(:login_code) { code_failure }
 
       it 'raises an error' do
-        expect { instance.run }.to raise_error App::LoginError
+        expect { instance.run }.to raise_error App::Error, 'Failed in nameserver.login call'
       end
     end
 
@@ -47,7 +47,7 @@ RSpec.describe App do
           let(:create_result) { code_failure }
 
           it 'raises an error' do
-            expect { instance.run }.to raise_error App::UpdateError
+            expect { instance.run }.to raise_error App::Error, 'Failed in nameserver.createRecord call'
           end
         end
 
@@ -75,7 +75,7 @@ RSpec.describe App do
           end
 
           it 'raises an error' do
-            expect { instance.run }.to raise_error App::CleanupError
+            expect { instance.run }.to raise_error App::Error, 'Failed in nameserver.deleteRecord call'
           end
         end
 
