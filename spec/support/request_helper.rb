@@ -5,6 +5,12 @@ module RequestHelper
       .to_return(status: 200, body: response_generic(code), headers: response_headers)
   end
 
+  def stub_unlock(code)
+    stub_request(:post, 'https://api.domrobot.com/xmlrpc/')
+      .with(body: %r{<methodName>account.unlock</methodName>})
+      .to_return(status: 200, body: response_generic(code), headers: response_headers)
+  end
+
   def stub_info(records)
     response_body = <<~XML
       <methodResponse>

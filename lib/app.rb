@@ -7,6 +7,7 @@ class App
 
   def run
     login
+    unlock
     cleanup
     update
 
@@ -26,6 +27,21 @@ class App
     config.logger.info YAML.dump(result)
 
     raise Error, 'Failed in nameserver.login call' if result['code'] != 1000
+  end
+
+  def unlock
+    return if config.tan.nil?
+
+    config.logger.info '---'
+    config.logger.info '--- Unlock:'
+
+    result = domrobot.call('account', 'unlock', {
+      'tan' => config.tan
+    })
+
+    config.logger.info YAML.dump(result)
+
+    raise Error, 'Failed in account.unlock call' if result['code'] != 1000
   end
 
   def cleanup

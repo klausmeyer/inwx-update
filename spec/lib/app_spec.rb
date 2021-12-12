@@ -34,8 +34,19 @@ RSpec.describe App do
     context 'when the login is working' do
       let(:login_code) { code_success }
 
-      before do
-        stub_info(info_result)
+      context 'when there is a tan configured' do
+        before do
+          config.tan = 'TAN'
+          stub_unlock(unlock_code)
+        end
+
+        context 'when the unlock call fails' do
+          let(:unlock_code) { code_failure }
+
+          it 'raises an error' do
+            expect { instance.run }.to raise_error App::Error, 'Failed in account.unlock call'
+          end
+        end
       end
 
       shared_examples 'creating the record' do
@@ -61,12 +72,12 @@ RSpec.describe App do
       end
 
       context 'when there are existing entries' do
-        let(:info_result) do
-          [record_one, record_two]
-        end
-
         let(:record_one) { 9001 }
         let(:record_two) { 9002 }
+
+        before do
+          stub_info([record_one, record_two])
+        end
 
         context 'when one of the delete calls fails' do
           before do
@@ -90,7 +101,9 @@ RSpec.describe App do
       end
 
       context 'when there are no existing records' do
-        let(:info_result) { [] }
+        before do
+          stub_info([])
+        end
 
         include_examples 'creating the record'
       end

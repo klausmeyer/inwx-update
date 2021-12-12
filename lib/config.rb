@@ -2,6 +2,7 @@ class Config
   attr_accessor(
     :login,
     :password,
+    :tan,
     :domain,
     :type,
     :record,
