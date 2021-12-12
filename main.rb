@@ -9,7 +9,7 @@ end
 config = Config.new(
   login:    ENV.fetch('LOGIN'),
   password: ENV.fetch('PASSWORD'),
-  tan:      ENV.fetch('TAN'),
+  tan:      ENV.fetch('TAN', nil),
   domain:   ENV.fetch('DOMAIN'),
   type:     ENV.fetch('TYPE'),
   record:   ENV.fetch('RECORD'),
