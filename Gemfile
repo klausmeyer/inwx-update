@@ -14,5 +14,5 @@ end
 
 group :development, :test do
   gem 'byebug', '~> 11.1.3'
-  gem 'rspec', '~> 3.10.0'
+  gem 'rspec', '~> 3.11.0'
 end
