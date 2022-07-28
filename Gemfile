@@ -5,7 +5,7 @@ gem 'xmlrpc',  '~> 0.3.0'
 gem 'rexml',   '~> 3.2.4'
 
 group :development do
-  gem 'dotenv', '~> 2.7.6', require: 'dotenv/load'
+  gem 'dotenv', '~> 2.8.1', require: 'dotenv/load'
 end
 
 group :test do
