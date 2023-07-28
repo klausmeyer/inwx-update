@@ -11,7 +11,7 @@ GEM
     hashdiff (1.0.1)
     inwx-rb (0.1.1)
     public_suffix (5.0.0)
-    rexml (3.2.5)
+    rexml (3.2.6)
     rspec (3.12.0)
       rspec-core (~> 3.12.0)
       rspec-expectations (~> 3.12.0)
